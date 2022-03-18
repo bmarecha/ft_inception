@@ -1,0 +1,16 @@
+FROM debian:buster
+MAINTAINER bmarecha <bmarecha@student.42.fr>
+
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get -y install nginx
+RUN apt-get -y install openssl wget
+
+COPY conf/nginx-host-conf ./root/
+COPY conf/nginx-host-conf-no-index ./root/
+COPY tools/change_index.sh ./root/
+COPY tools/startng.sh /
+
+EXPOSE 80
+EXPOSE 443
+EXPOSE 9000
+CMD bash /startng.sh
