@@ -1,0 +1,40 @@
+version: '3'
+services:
+ nginx:
+  build: requirements/nginx/
+  volumes:
+   - wp_data:/var/lib/wordpress
+  ports:
+   - "8080:80"
+   - "9000:9000"
+  restart: always
+
+ db:
+  build: requirements/mariadb/
+  volumes:
+   - db_data:/var/lib/mariadb
+  ports:
+   - "3306:3306"
+  restart: always
+
+ wordpress:
+  depends_on:
+   - db
+   - nginx
+  build: requirements/wordpress/
+  volumes:
+   - wp_data:/var/lib/wordpress
+  ports:
+   - "9000:9000"
+   - "3306:3306"
+  restart: always
+  networks:
+   - my_network
+
+volumes:
+ db_data: {}
+ wp_data: {}
+
+networks:
+  my_network:
+    driver: overlay
