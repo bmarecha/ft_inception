@@ -5,6 +5,7 @@ services:
   volumes:
    - wp_data:/var/lib/wordpress
   ports:
+   - "443:443"
    - "8080:80"
    - "9000:9000"
   restart: always
