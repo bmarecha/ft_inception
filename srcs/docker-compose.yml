@@ -33,9 +33,14 @@ services:
    - my_network
 
 volumes:
- db_data: {}
+ db_data:
+  driver: local
+  driver_opts:
+   type: 'none'
+   o: 'bind'
+   device: '/Users/${USER}/db'
  wp_data: {}
 
 networks:
   my_network:
-    driver: overlay
+    driver: bridge
