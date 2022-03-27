@@ -10,7 +10,7 @@ COPY conf/nginx-host-conf-no-index ./root/
 COPY tools/change_index.sh ./root/
 COPY tools/startng.sh /
 
-EXPOSE 80
 EXPOSE 443
-EXPOSE 9000
 CMD bash /startng.sh
+
+ENTRYPOINT	/usr/sbin/nginx -g "daemon off;"

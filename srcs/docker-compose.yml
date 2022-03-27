@@ -1,36 +1,35 @@
 version: '3'
 services:
- nginx:
-  build: requirements/nginx/
-  volumes:
-   - wp_data:/var/lib/wordpress
-  ports:
-   - "443:443"
-   - "8080:80"
-   - "9000:9000"
-  restart: always
-
  db:
+  networks:
+   - my_network
   build: requirements/mariadb/
   volumes:
-   - db_data:/var/lib/mariadb
-  ports:
-   - "3306:3306"
+   - db_data:/var/lib/mysql
   restart: always
 
  wordpress:
-  depends_on:
-   - db
-   - nginx
-  build: requirements/wordpress/
-  volumes:
-   - wp_data:/var/lib/wordpress
-  ports:
-   - "9000:9000"
-   - "3306:3306"
-  restart: always
   networks:
    - my_network
+  depends_on:
+   - db
+  build: requirements/wordpress/
+  volumes:
+   - wp_data:/var/www
+  restart: always
+
+ nginx:
+  networks:
+   - my_network
+  depends_on:
+   - wordpress
+  build: requirements/nginx/
+  volumes:
+   - wp_data:/var/www
+  ports:
+   - "443:443"
+   - "8080:80"
+  restart: always
 
 volumes:
  db_data:
@@ -38,8 +37,13 @@ volumes:
   driver_opts:
    type: 'none'
    o: 'bind'
-   device: '/Users/${USER}/db'
- wp_data: {}
+   device: '${HOME}/db'
+ wp_data: 
+  driver: local
+  driver_opts:
+   type: 'none'
+   o: 'bind'
+   device: '${HOME}/wp'
 
 networks:
   my_network:

@@ -12,6 +12,5 @@ COPY conf/wp-config.php ./root/
 COPY conf/config.inc.php ./root/
 COPY tools/startwp.sh /
 
-EXPOSE 3306
 EXPOSE 9000
 CMD bash /startwp.sh
