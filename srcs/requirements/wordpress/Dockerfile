@@ -10,7 +10,6 @@ RUN apt-get -y install wget
 COPY conf/wordpress.tar.gz ./root/
 COPY conf/wp-config.php ./root/
 COPY conf/config.inc.php ./root/
-COPY tools/wordpress.sql ./root/
 COPY tools/startwp.sh /
 
 EXPOSE 3306
