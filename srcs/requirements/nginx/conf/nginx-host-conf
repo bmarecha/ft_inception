@@ -1,30 +1,24 @@
 #default configuration with minor fixes
 
 server {
-	listen 80;
-	listen [::]:80;
-
-	return 301 https://$server_name$request_uri;
-}
-
-server {
 	# SSL configuration
 	
 	listen 443 ssl;
 	listen [::]:443 ssl;
 		
+	ssl on;
 	ssl_certificate /etc/ssl/localhost.pem;
 	ssl_certificate_key /etc/ssl/localhost.key;
+	ssl_protocols TLSv1.2 TLSv1.3;
 
 	root /var/www/localhost;
 
 	# Add index.php to the list if you are using PHP
-	index index.php index.html index.htm index.nginx-debian.html;
+	index index.php index.html index.htm info.php index.nginx-debian.html;
 
-	server_name localhost;
+	server_name www.bmarecha.42.fr bmarecha.42.fr;
 
 	location / {
-		autoindex on;
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
@@ -32,6 +26,6 @@ server {
 
 	location ~ \.php$ {
 		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+		fastcgi_pass wordpress:9000;
 	}
 }
