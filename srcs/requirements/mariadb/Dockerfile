@@ -9,4 +9,6 @@ COPY tools/wordpress.sql ./root/
 COPY tools/startdb.sh /
 
 EXPOSE 3306
-CMD bash /startdb.sh
+RUN bash /startdb.sh
+
+ENTRYPOINT service mysql start

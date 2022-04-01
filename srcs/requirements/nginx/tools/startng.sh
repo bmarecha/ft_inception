@@ -12,5 +12,3 @@ chmod -R 755 /var/www/*
 # SSL CONFIG
 mkdir /etc/ssl
 openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/ssl/localhost.pem -keyout /etc/ssl/localhost.key -subj "/C=FR/ST=Paris/L=Paris/O=42 School/OU=bmar/CN=localhost"
-
-service nginx start
