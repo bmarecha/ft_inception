@@ -3,8 +3,8 @@
 server {
 	# SSL configuration
 	
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl default_server;
+	listen [::]:443 ssl default_server;
 		
 	ssl on;
 	ssl_certificate /etc/ssl/localhost.pem;

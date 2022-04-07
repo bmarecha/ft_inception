@@ -7,8 +7,7 @@ RUN apt-get -y install mariadb-server
 #COPY srcs/wordpress.tar.gz ./root/
 COPY tools/wordpress.sql ./root/
 COPY tools/startdb.sh /
+COPY tools/my.cnf /etc/mysql/
 
 EXPOSE 3306
-RUN bash /startdb.sh
-
-ENTRYPOINT service mysql start
+CMD bash /startdb.sh

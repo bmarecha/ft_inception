@@ -10,7 +10,7 @@ COPY tools/info.php ./root/
 COPY tools/startng.sh /
 
 EXPOSE 443
+
 RUN bash /startng.sh
 
 ENTRYPOINT	/usr/sbin/nginx -g "daemon off;"
-CMD service mysql start

@@ -6,7 +6,7 @@ RUN apt-get install -y php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7
 RUN apt-get install -y php-mbstring php-zip php-gd
 RUN apt-get install -y php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
 RUN apt-get -y install wget
-RUN	mkdir -p /run/php
+RUN wget -P /root/ https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-english.tar.gz
 
 COPY conf/wordpress.tar.gz ./root/
 COPY conf/wp-config.php ./root/
