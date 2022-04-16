@@ -1,6 +1,7 @@
 version: '3'
 services:
  db:
+  container_name: db
   networks:
    - my_network
   build: requirements/mariadb/
@@ -10,6 +11,7 @@ services:
   env_file: .env
 
  wordpress:
+  container_name: wordpress
   networks:
    - my_network
   depends_on:
@@ -17,10 +19,11 @@ services:
   build: requirements/wordpress/
   volumes:
    - wp_data:/var/www
-  restart: unless-stopped
+  restart: always
   env_file: .env
 
  nginx:
+  container_name: nginx
   networks:
    - my_network
   depends_on:

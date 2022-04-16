@@ -16,11 +16,11 @@ server {
 	# Add index.php to the list if you are using PHP
 	index index.php index.html index.htm info.php index.nginx-debian.html;
 
-	server_name www.bmarecha.42.fr bmarecha.42.fr;
+	server_name bmarecha.42.fr;
 
 	location / {
 		# First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
+		# as directory, then as php.
 		try_files $uri $uri/ /index.php$is_args$args =404;
 	}
 
