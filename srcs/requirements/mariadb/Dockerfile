@@ -17,6 +17,7 @@ RUN     mysql_install_db
 COPY tools/wordpress.sql ./root/
 COPY tools/startdb.sh /
 COPY tools/my.cnf /etc/mysql/
+COPY tools/debian.cnf /home/
 
 EXPOSE 3306
 

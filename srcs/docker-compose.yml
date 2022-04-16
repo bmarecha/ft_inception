@@ -30,7 +30,6 @@ services:
    - wp_data:/var/www
   ports:
    - "443:443"
-   - "8080:80"
   restart: always
 
 volumes:
