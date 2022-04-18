@@ -42,13 +42,13 @@ volumes:
   driver_opts:
    type: 'none'
    o: 'bind'
-   device: '${HOME}/db'
+   device: '${HOME}/bmarecha/db'
  wp_data: 
   driver: local
   driver_opts:
    type: 'none'
    o: 'bind'
-   device: '${HOME}/wp'
+   device: '${HOME}/bmarecha/wp'
 
 networks:
   my_network:

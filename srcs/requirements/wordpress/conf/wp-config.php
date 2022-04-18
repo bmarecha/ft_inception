@@ -84,7 +84,7 @@ define( 'WP_DEBUG', true );
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', '/var/www/localhost/wordpress' );
+	define( 'ABSPATH', '/var/www/localhost/' );
 }
 
 /** Sets up WordPress vars and included files. */
