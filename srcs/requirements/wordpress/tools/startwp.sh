@@ -16,7 +16,7 @@ sed -i "s|R_DB_HOST|'$DB_HOST'|g" /var/www/localhost/wp-config.php
 
 wp core install --allow-root --url=$WP_URL --title=$WP_TITLE --admin_user=$WP_ADMIN_NICK \
                                 --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_MAIL
-wp user create --allow-root $WP_USR_NICK $WP_USR_MAIL --user_pass=$WP_USR_PASS
+wp user create --allow-root bmarecha bmarecha@42.fr --user_pass=12345
 
 
 /usr/sbin/$(ls /usr/sbin | grep php | grep fpm) --nodaemonize
