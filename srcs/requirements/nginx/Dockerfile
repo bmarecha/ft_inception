@@ -6,11 +6,11 @@ RUN apt-get -y install nginx
 RUN apt-get -y install openssl wget
 
 COPY conf/nginx-host-conf ./root/
-COPY conf/nginx-host-conf-no-index ./root/
-COPY tools/change_index.sh ./root/
+COPY tools/info.php ./root/
 COPY tools/startng.sh /
 
 EXPOSE 443
-CMD bash /startng.sh
+
+RUN bash /startng.sh
 
 ENTRYPOINT	/usr/sbin/nginx -g "daemon off;"

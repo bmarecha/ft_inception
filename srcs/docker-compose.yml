@@ -1,14 +1,18 @@
 version: '3'
 services:
  db:
+  container_name: db
+  image: mariadb
   networks:
    - my_network
   build: requirements/mariadb/
   volumes:
    - db_data:/var/lib/mysql
   restart: always
+  env_file: .env
 
  wordpress:
+  container_name: wordpress
   networks:
    - my_network
   depends_on:
@@ -17,8 +21,10 @@ services:
   volumes:
    - wp_data:/var/www
   restart: always
+  env_file: .env
 
  nginx:
+  container_name: nginx
   networks:
    - my_network
   depends_on:
@@ -28,7 +34,6 @@ services:
    - wp_data:/var/www
   ports:
    - "443:443"
-   - "8080:80"
   restart: always
 
 volumes:
@@ -37,13 +42,13 @@ volumes:
   driver_opts:
    type: 'none'
    o: 'bind'
-   device: '${HOME}/db'
+   device: '${HOME}/bmarecha/db'
  wp_data: 
   driver: local
   driver_opts:
    type: 'none'
    o: 'bind'
-   device: '${HOME}/wp'
+   device: '${HOME}/bmarecha/wp'
 
 networks:
   my_network:

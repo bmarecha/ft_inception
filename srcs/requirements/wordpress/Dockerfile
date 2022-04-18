@@ -6,10 +6,13 @@ RUN apt-get install -y php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7
 RUN apt-get install -y php-mbstring php-zip php-gd
 RUN apt-get install -y php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
 RUN apt-get -y install wget
+RUN		wget -P /usr/local/bin https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN		chmod -R 777 /usr/local/bin/wp-cli.phar
+RUN		mv /usr/local/bin/wp-cli.phar /usr/local/bin/wp
+RUN		mkdir -p /var/www/localhost && mkdir -p /run/php
 
-COPY conf/wordpress.tar.gz ./root/
-COPY conf/wp-config.php ./root/
-COPY conf/config.inc.php ./root/
+COPY conf/wp-config.php /root/wp-config.php
+COPY conf/config.inc.php /root/
 COPY tools/startwp.sh /
 
 EXPOSE 9000
