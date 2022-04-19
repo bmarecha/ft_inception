@@ -10,6 +10,8 @@ RUN		wget -P /usr/local/bin https://raw.githubusercontent.com/wp-cli/builds/gh-p
 RUN		chmod -R 777 /usr/local/bin/wp-cli.phar
 RUN		mv /usr/local/bin/wp-cli.phar /usr/local/bin/wp
 RUN		mkdir -p /var/www/localhost && mkdir -p /run/php
+RUN     wget -P /root/ https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-english.tar.gz
+
 
 COPY conf/wp-config.php /root/wp-config.php
 COPY conf/config.inc.php /root/
