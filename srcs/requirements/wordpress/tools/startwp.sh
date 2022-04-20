@@ -26,6 +26,7 @@ cd /var/www/localhost
 wp core install --allow-root --url=$WP_URL --title=$WP_TITLE --admin_user=$WP_ADMIN_NICK \
                                 --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_MAIL
 
+wp user delete --allow-root $WP_ADMIN_NICK
 wp user create --allow-root $WP_ADMIN_NICK $WP_ADMIN_MAIL --user_pass=$WP_ADMIN_PASS --role=administrator
 wp user create --allow-root bmarecha bmarecha@42.fr --user_pass=12345 --role=author
 
