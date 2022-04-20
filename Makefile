@@ -13,6 +13,8 @@ ps:
 
 clean:
 	docker system prune
+	docker volume rm srcs_wp_data
+	docker volume rm srcs_db_data
 
 net:
 	docker network ls

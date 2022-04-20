@@ -14,7 +14,11 @@ echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$ROOT_PASS'" | mysql -u root
 echo "FLUSH PRIVILEGES;" | mysql -u root
 echo "FLUSH PRIVILEGES;" | mysql -u root -p$ROOT_PASS
 
+if [ -d "/var/lib/mysql/wordpress" ]; then
+echo "Wordpress db already made"
+else
 mysql wordpress -u root -p$ROOT_PASS < /root/wordpress.sql
+fi
 
 cp /home/debian.cnf /etc/mysql/
 
